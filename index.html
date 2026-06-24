@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDo List</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+    <!-- Google Font: Lexend -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="Navbar">
+        <div class="links">
+            <div class="logo">
+                <img src="logo.png" style="width: 40px;">
+            </div>
+            <div class="titel">
+                <h2>ToDo List</h2>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hauptteil -->
+    <div class="main">
+
+        <!-- Suchbutton -->
+        <div class="top">
+            <button id="todosuchen">🔍 Suchen nach Titel, Autor, Kategorie...</button>
+        </div>
+
+        <!-- Plusbutton & Inhalt -->
+        <div class="content">
+            <button id="btnNeuesTodo" class="btn-plus" title="Neues ToDo hinzufügen">+</button>
+            <div class="linkscontent">
+            </div>
+            <div class="rechtscontent">
+            </div>
+        </div>
+    </div>
+
+    <!-- Overlay für Abdunklung -->
+    <div id="overlay" class="overlay hidden"></div>
+
+    <!-- Modal (NEUES ToDO) -->
+    <div id="modalNeuesTodo" class="modal hidden">
+        <h2 class="modal-titel">Neues ToDo</h2>
+
+        <!-- Titel -->
+        <label class="modal-label" for="inputTitel">Titel*</label>
+        <input id="inputTitel" class="modal-input" type="text" placeholder="Titel (max. 255 Zeichen)" maxlength="255">
+
+        <!-- 1 Linie -->
+        <div class="modal-row">
+            <!-- Art -->
+            <div class="modal-col">
+                <label class="modal-label" for="selectArt">Art*</label>
+                <select id="selectArt" class="modal-select">
+                    <option value="">-- Bitte Wählen --</option>
+                    <option value="Task">Task</option>
+                    <option value="Event">Event</option>
+                </select>
+            </div>
+            <!-- Autor -->
+            <div class="modal-col">
+                <label class="modal-label" for="inputAutor">Autor*</label>
+                <input id="inputAutor" class="modal-input" type="text" placeholder="Autor (Max. 20 Zeichen)" maxlength="20">
+            </div>
+        </div>
+
+        <!-- Kategorie -->
+        <label class="modal-label" for="selectKategorie">Kategorie*</label>
+        <select id="selectKategorie" class="modal-select">
+            <option value="">-- Bitte Wählen --</option>
+            <option value="Arbeit">Arbeit</option>
+            <option value="Privat">Privat</option>
+            <option value="Sport">Sport</option>
+            <option value="Reisen">Reisen</option>
+            <option value="Restaurant">Restaurant</option>
+        </select>
+
+        <!-- Beschreibung -->
+        <label class="modal-label" for="inputBeschreibung">Beschreibung*</label>
+        <textarea id="inputBeschreibung" class="modal-textarea" placeholder="Optionale Beschreibung..."></textarea>
+
+        <!-- Priorität -->
+        <div class="modal-dringlichkeit">
+            <span id="dringlichkeit">Dringlichkeit</span>
+            <label class="modal-checkbox-label">
+                <input id="checkWichtig" type="checkbox"> WICHTIG
+            </label>
+            <label class="modal-checkbox-label">
+                <input id="checkDringend" type="checkbox"> DRINGEND
+            </label>
+        </div>
+
+        <!-- 1 Linie -->
+        <div class="modal-row">
+            <!-- Startdatum -->
+            <div class="modal-col">
+                <label class="modal-label" for="inputStartdatum">Startdatum</label>
+                <input id="inputStartdatum" class="modal-input" type="text" placeholder="TT.mm.jjjj">
+            </div>
+            <!-- Enddatum -->
+            <div class="modal-col">
+                <label class="modal-label" for="inputEnddatum">Enddatum</label>
+                <input id="inputEnddatum" class="modal-input" type="text" placeholder="TT.mm.jjjj">
+            </div>
+        </div>
+
+        <!-- 1 Linie -->
+        <div class="modal-row modal-row-bottom">
+            <!-- Fortschritt -->
+            <div class="modal-col">
+                <label class="modal-label" for="inputFortschritt">Optionaler Fortschritt</label>
+                <input id="inputFortschritt" class="modal-input" type="number" placeholder="Anzahl in % (0-100)" min="0" max="100">
+            </div>
+            <!-- Buttons -->
+            <div class="modal-col modal-buttons">
+                <button id="btnAbbrechen" class="btn-abbrechen">Abbrechen</button>
+                <button id="btnHinzufuegen" class="btn-hinzufuegen">Hinzufügen</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal (ÄNDERN ToDO) -->
+    <div id="modalAendern" class="modal hidden">
+        <h2 class="modal-titel">TODO ändern</h2>
+
+        <!-- Titel -->
+        <label class="modal-label" for="editTitel">Titel*</label>
+        <input id="editTitel" class="modal-input" type="text" placeholder="Titel (max. 255 Zeichen)" maxlength="255">
+
+        <!-- 1 Linie -->
+        <div class="modal-row">
+            <div class="modal-col">
+                <!-- Art -->
+                <label class="modal-label" for="editArt">Art*</label>
+                <select id="editArt" class="modal-select">
+                    <option value="">-- Bitte Wählen --</option>
+                    <option value="Task">Task</option>
+                    <option value="Event">Event</option>
+                </select>
+            </div>
+            <!-- Autor -->
+            <div class="modal-col">
+                <label class="modal-label" for="editAutor">Autor*</label>
+                <input id="editAutor" class="modal-input" type="text" placeholder="Autor (Max. 20 Zeichen)" maxlength="20">
+            </div>
+        </div>
+
+        <!-- Kategorie -->
+        <label class="modal-label" for="editKategorie">Kategorie*</label>
+        <select id="editKategorie" class="modal-select">
+            <option value="">-- Bitte Wählen --</option>
+            <option value="Arbeit">Arbeit</option>
+            <option value="Privat">Privat</option>
+            <option value="Sport">Sport</option>
+            <option value="Reisen">Reisen</option>
+            <option value="Restaurant">Restaurant</option>
+        </select>
+
+        <!-- Beschreibung -->
+        <label class="modal-label" for="editBeschreibung">Beschreibung*</label>
+        <textarea id="editBeschreibung" class="modal-textarea" placeholder="Optionale Beschreibung..."></textarea>
+
+        <!-- Priorität -->
+        <div class="modal-dringlichkeit">
+            <span id="dringlichkeit">Dringlichkeit</span>
+            <label class="modal-checkbox-label">
+                <input id="editWichtig" type="checkbox"> WICHTIG
+            </label>
+            <label class="modal-checkbox-label">
+                <input id="editDringend" type="checkbox"> DRINGEND
+            </label>
+        </div>
+
+        <!-- 1 Linie-->
+        <div class="modal-row">
+            <!-- Startdatum -->
+            <div class="modal-col">
+                <label class="modal-label" for="editStartdatum">Startdatum</label>
+                <input id="editStartdatum" class="modal-input" type="text" placeholder="TT.mm.jjjj">
+            </div>
+            <!-- Enddatum -->
+            <div class="modal-col">
+                <label class="modal-label" for="editEnddatum">Enddatum</label>
+                <input id="editEnddatum" class="modal-input" type="text" placeholder="TT.mm.jjjj">
+            </div>
+        </div>
+
+        <!-- 1 Linie-->
+        <div class="modal-row modal-row-bottom">
+            <!-- Fortschritt -->
+            <div class="modal-col">
+                <label class="modal-label" for="editFortschritt">Optionaler Fortschritt</label>
+                <input id="editFortschritt" class="modal-input" type="number" placeholder="Anzahl in % (0-100)" min="0" max="100">
+            </div>
+            <!-- Buttons -->
+            <div class="modal-col modal-buttons">
+                <button id="btnAendernAbbrechen" class="btn-abbrechen">Abbrechen</button>
+                <button id="btnAendernSpeichern" class="btn-hinzufuegen">Hinzufügen</button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal (SUCHEN ToDO) -->
+    <div id="modalSuche" class="modal hidden">
+        <h2 class="modal-titel">ToDo suchen</h2>
+        <!-- Titel -->
+        <label class="modal-label" for="inputSuche">Eingabe</label>
+        <input id="inputSuche" class="modal-input" type="text" placeholder="Suchen nach Titel, Autor, Kategorie...." maxlength="255">
+
+        <!-- Filter -->
+        <div class="modal-col">
+            <label class="modal-label" id="label_suche">Filtern nach:</label>
+            <div class="modal-row">
+                <label class="modal-checkbox-label"><input id="filterKategorie" type="checkbox"> KATEGORIE</label>
+                <label class="modal-checkbox-label"><input id="filterTitel" type="checkbox"> TITEL</label>
+                <label class="modal-checkbox-label"><input id="filterAutor" type="checkbox"> AUTOR</label>
+                <label class="modal-checkbox-label"><input id="filterBeschreibung" type="checkbox"> BESCHREIBUNG</label>
+            </div>
+        </div>
+
+        <!-- Sortierung -->
+        <div class="modal-col">
+            <label class="modal-label" id="label_sortiere">Sortieren nach:</label>
+            <div class="modal-row">
+                <label class="modal-checkbox-label"><input id="sortDringlichkeit" type="checkbox"> DRINGLICHKEIT</label>
+                <label class="modal-checkbox-label"><input id="sortPrioritaet" type="checkbox"> PRIORITÄT</label>
+            </div>
+        </div>
+
+        <!-- Buttons -->
+        <div class="modal-col modal-buttons">
+            <button id="btnSucheAbbrechen" class="btn-abbrechen">Leeren</button>
+            <button id="btnSuchen" class="btn-hinzufuegen">Suchen</button>
+        </div>
+    </div>
+        
+    <!-- JS -->
+    <script src="script.js"></script>
+</body>
+</html>

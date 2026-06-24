@@ -1,0 +1,334 @@
+/* Farbvariablen */
+:root {
+    --white: #ffffff;
+    --grey: #d9d9d9;
+}
+
+* {
+    font-family: 'Inter','Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #f4f5f7;
+}
+
+
+/*
+    Navbar
+*/
+
+.Navbar {
+    display: flex;
+    background-color: var(--white);
+    padding-bottom: 20px;
+}
+
+.links {
+    display: flex;
+    gap: 15px;
+}
+
+.logo {
+    padding-left: 40px;
+    padding-top: 20px;
+}
+
+/*
+    Todos
+*/
+
+.titel {
+    padding-top: 25px;
+}
+
+#todosuchen:hover {
+    cursor: pointer;
+}
+
+button {
+    appearance: none;
+    background-color: var(--white);
+    padding: 10px;
+    border: 2px solid var(--grey);
+    border-radius: 12px;
+}
+
+.top {
+    padding-top: 10px;
+    padding-left: 90px;
+}
+
+.btn-plus {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #222;
+    color: var(--white);
+    font-size: 24px;
+    line-height: 1;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 25px;
+    margin-left: 40px;
+    transition: background-color 0.2s;
+}
+
+.btn-plus:hover {
+    background-color: #515050;
+}
+
+/* Abdunklung */
+.overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.45);
+    z-index: 100;
+}
+
+
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--white);
+    border-radius: 16px;
+    padding: 36px 40px 32px 40px;
+    width: 620px;
+    max-width: 95vw;
+    max-height: 90vh;
+    overflow-y: auto;
+    z-index: 200;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+}
+
+/* Zum Ein und Ausblenden */
+.hidden {
+    display: none;
+}
+/* Titel */
+.modal-titel {
+    text-align: center;
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 24px;
+}
+/* Labels */
+.modal-label {
+    display: block;
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 6px;
+    margin-top: 14px;
+}
+/* Dringlichkeit */
+#dringlichkeit {
+    display: block;
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+/* Eingabe */
+.modal-input {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid var(--grey);
+    border-radius: 10px;
+    font-size: 14px;
+    box-sizing: border-box;
+    background-color: var(--white);
+    appearance: none;
+}
+/* Auswahl */
+.modal-select {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid var(--grey);
+    border-radius: 10px;
+    font-size: 14px;
+    box-sizing: border-box;
+    background-color: var(--white);
+    appearance: none;
+    cursor: pointer;
+}
+/* Texteingabe */
+.modal-textarea {
+    width: 100%;
+    height: 110px;
+    padding: 10px 14px;
+    border: 1px solid #d9d9d9;
+    border-radius: 10px;
+    font-size: 14px;
+    box-sizing: border-box;
+    resize: vertical;
+    font-family: inherit;
+}
+/* Zweispaltige 1x Linie */
+.modal-row {
+    display: flex;
+    gap: 20px;
+}
+.modal-col {
+    flex: 1;
+}
+/* Checkboxen */
+.modal-dringlichkeit {
+    margin-top: 14px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.modal-checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    cursor: pointer;
+}
+/* Unterste Zeile bzw. Fortschritt & Buttons */
+.modal-row-bottom {
+    align-items: flex-end;
+    margin-top: 14px;
+}
+.modal-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    align-items: flex-end;
+    padding-bottom: 2px;
+}
+/* Button zum Abbrechen */
+.btn-abbrechen {
+    background-color: #f07070;
+    color: var(--white);
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+.btn-abbrechen:hover {
+    background-color: #d95f5f;
+}
+/* Button zum Hinzufügen */
+.btn-hinzufuegen {
+    background-color: #5cb85c;
+    color: var(--white);
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+.btn-hinzufuegen:hover {
+    background-color: #4aa24a;
+}
+/* ToDo Karten */
+.todo-karte {
+    background-color: var(--white);
+    border: 2px solid var(--grey);
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin: 10px 40px;
+    width: 330px;
+}
+.todo-karte h3 {
+    font-size: 15px;
+    margin-bottom: 8px;
+}
+.todo-karte p {
+    font-size: 13px;
+    color: #555;
+    margin-bottom: 4px;
+}
+.bottom-card{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.bttn-card{
+    display:flex;
+    justify-content: right;
+    gap: 10px;
+}
+.btn-update{
+    background-color: rgba(130, 121, 255);
+}
+.btn-loeschen{
+    background-color: rgba(255, 121, 121);
+}
+.btn-update:hover, .btn-loeschen:hover{
+    cursor: pointer;
+}
+.first-line {
+    display: flex;
+    align-items: center;
+}
+#type {
+    margin-left: 8px;
+    border-radius: 8px;
+    padding: 2px 8px;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    align-self: center;
+    line-height: 1;
+}
+.upper-first-line{
+    display: flex;
+    justify-content: space-between;
+}
+#prio{
+    justify-content: right;
+}
+/* Hier immer Fortschritt anhand von % anzeigen 
+bzw. Balkenwidth is % */
+.fortschritt{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.fortschritt-balken {
+    flex: 1;
+    background-color: #e0e0e0;
+    height: 8px;
+    border-radius: 999px;
+    overflow: hidden;
+    margin-bottom: 4px;
+}
+.fortschritt-fill{
+    background-color: #020000;
+    height: 8px;
+}
+/* Grid (mehrteilig 
+sodass 2 jeweils nebeneinander)*/
+.grid-container{
+    display: grid;
+}
+.linkscontent {
+    display: grid;
+    grid-template-columns: repeat(2, 375px);
+    gap: 16px;
+    padding: 20px 40px;
+    justify-content: center;
+}
+/* 2 Version */
+.todo-karte {
+    background-color: var(--white);
+    border: 2px solid var(--grey);
+    border-radius: 12px;
+    padding: 16px 20px;
+    width: 330px;
+    margin: 0;
+}
+#label_suche{
+    margin-bottom: 15px;
+}
