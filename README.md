@@ -14,7 +14,7 @@ ToDo-Manager ist eine einfache, clientseitige ToDo Liste, welche vollständig im
 - Speicherung im localStorage
 ---
 
-| Action | How |
+| Was | Wie |
 |---|---|
 | Aufgabe hinzufügen | Menü über den Button öffnen, Details eingeben und auf „Hinzufügen“ klicken |
 | Aufgabe erledigen | Fortschritt aktualisieren |
